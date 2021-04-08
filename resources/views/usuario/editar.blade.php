@@ -38,10 +38,24 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" class="form-control"  value="{{ $dados->password }}" required/>
             </div>
+            @if ( $dados->profile != 0)
+                
+            <div class="form-group col-md-6">
+                <label for="profile">Perfil</label>
+                <select class="form-control" id="profile" name="profile" required>
+                    <option value=''>selecione</option>
+                    <option value='' disabled>-----</option>
+                    <option value='0' {{ $dados->profile == 0 ? 'selected="selected"' : ''}}>Super Admin</option>
+                    <option value='1' {{ $dados->profile == 1 ? 'selected="selected"' : ''}}>Admin</option>
+                    <option value='2' {{ $dados->profile == 2 ? 'selected="selected"' : ''}}>Usuário</option>
+                </select>
+            </div>
 
+            @endif
+            
             <div class="form-group col-md-12">
-                <a href='{!! url('/usuarios'); !!}' class="btn btn-secondary mr-2">Voltar</a>
-                <button type="submit" class="btn btn-primary">Atualizar</button>
+                <button type="submit" class="btn btn-sm float-right btn-primary">Atualizar</button>
+                <a href='{!! url('/usuarios'); !!}' class="btn btn-sm float-right btn-secondary mr-2">Voltar</a>
             </div>
         </div>
     </form>

@@ -39,9 +39,20 @@
                 <input type="password" id="password" name="password" class="form-control" required/>
             </div>
 
+            <div class="form-group col-md-6">
+                <label for="profile">Perfil</label>
+                <select class="form-control" id="profile" name="profile" required>
+                    <option value=''>selecione</option>
+                    <option value='' disabled>-----</option>
+                    <option value='0'>Super Admin</option>
+                    <option value='1'>Admin</option>
+                    <option value='2'>Usuário</option>
+                </select>
+            </div>
+
             <div class="form-group col-md-12">
-                <a href='{!! url('/usuarios'); !!}' class="btn btn-secondary mr-2">Voltar</a> 
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-sm float-right btn-primary">Cadastrar</button>
+                <a href='{!! url('/usuarios'); !!}' class="btn btn-sm float-right btn-secondary mr-2">Voltar</a> 
             </div>
         </div>
     </form>

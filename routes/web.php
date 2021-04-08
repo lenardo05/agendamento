@@ -22,12 +22,15 @@ Auth::routes();
 
 Route::resource('/medicos', 'MedicosController');
 Route::get('/medicos/delete/{id}', ['as' => 'medicos.delete', 'uses' => 'MedicosController@destroy']);
+Route::get('/medicos/delete/confirma/{id}', ['as' => 'medicos.delete.confirma', 'uses' => 'MedicosController@confirma']);
 
 Route::resource('/pacientes', 'PacientesController');
 Route::get('/pacientes/delete/{id}', ['as' => 'pacientes.delete', 'uses' => 'PacientesController@destroy']);
+Route::get('/pacientes/delete/confirma/{id}', ['as' => 'pacientes.delete.confirma', 'uses' => 'PacientesController@confirma']);
 
 Route::resource('/agendamentos', 'AgendamentosController');
 Route::get('/agendamentos/delete/{id}', ['as' => 'agendamentos.delete', 'uses' => 'AgendamentosController@destroy']);
+Route::get('/agendamentos/delete/confirma/{id}', ['as' => 'agendamentos.delete', 'uses' => 'AgendamentosController@confirma']);
 
 Route::resource('/usuarios', 'UsuariosController');
 Route::get('/usuarios/delete/{id}', ['as' => 'usuarios.delete', 'uses' => 'UsuariosController@destroy']);

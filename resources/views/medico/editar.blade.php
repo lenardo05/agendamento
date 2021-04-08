@@ -50,6 +50,17 @@
             </div>
 
             <div class="form-group col-md-6">
+                <label for="especialidade">Especialidade</label>
+                <select class="form-control" id="especialidade" name="especialidade" required>
+                    <option value=''>selecione</option>
+                    <option value='' disabled>-----</option>
+                    @foreach ($dados_especialidades as $dado_especialidade)
+                    <option value="{{ $dado_especialidade->id }}" {{ $dados->id_especialidade == $dado_especialidade->id ? 'selected' : '' }}>{{ $dado_especialidade->nome }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
                 <label for="registro">CRM</label>
                 <input type="text" id="registro" name="registro" class="form-control"  value="{{ $dados->registro }}" required/>
             </div>
@@ -59,8 +70,10 @@
                 <input type="text" id="celular" name="celular" class="form-control celular" maxlength="15" value="{{ $dados->celular }}" required/>
             </div>
 
-            <a href='{!! url('/medicos'); !!}' class="btn btn-secondary ml-1 mr-2">Voltar</a>
-            <button type="submit" class="btn btn-primary">Atualizar</button>
+            <div class="form-group col-md-12 mt-5">
+                <a href='{!! url('/medicos') !!}' class="btn btn-sm float-left btn-secondary ml-1 mr-2">Voltar</a>
+                <button type="submit" class="btn btn-sm float-left btn-primary">Atualizar</button>
+            </div>
         </div>
     </form>
 

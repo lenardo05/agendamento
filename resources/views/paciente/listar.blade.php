@@ -12,13 +12,16 @@
 </div>
 
 <div class="table-responsive">
+    @include('paciente.excluir')
+    @include('mensagens.sucesso')
     <table class="table table-striped table-sm" id="dt_table">
         <thead>
             <tr>
                 <th>Nº</th>
                 <th>Nome</th>
+                <th>Idade</th>
                 <th>Celular</th>
-                <th class="text-center">Ação</th>
+                <th class="text-center w-25">Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -27,10 +30,12 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $dado->nome }}</td>
+                <td>{{ $dado->idade }}</td>
                 <td>{{ $dado->celular }}</td>
                 <td class="text-center">
                     <a href="{{ route('pacientes.edit',$dado->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                    <a href="{{ route('pacientes.delete',$dado->id)}}" class="btn btn-primary btn-sm">Excluir</a>
+                    <a href="{{ route('pacientes.show',$dado->id)}}" class="btn btn-primary btn-sm">Visualizar</a>
+                    <a href="{{ route('pacientes.delete',$dado->id)}}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
         @endforeach
@@ -42,4 +47,5 @@
 
 @section('js')
     <script src="{{ asset('js/config.js') }}" ></script>
+
 @endsection

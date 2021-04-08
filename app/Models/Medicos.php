@@ -14,10 +14,12 @@ class Medicos extends Model
         'sexo',
         'registro',
         'celular',
+        'id_especialidade',
     ];
 
-    public function agendamentos()
+    public function especialidade()
     {
-        return $this->hasMany(Agendamentos::class, 'id_medico', 'id');
+        return $this->hasOne(Especialidades::class, 'id', 'id_especialidade');
     }
+    
 }

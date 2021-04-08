@@ -16,8 +16,4 @@ class Pacientes extends Model
         'endereco',
     ];
 
-    public function agendamentos()
-    {
-        return $this->hasMany(Agendamentos::class, 'id_paciente', 'id');
-    }
 }

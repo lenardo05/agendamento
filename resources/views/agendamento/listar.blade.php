@@ -12,14 +12,16 @@
 </div>
 
 <div class="table-responsive">
+    @include('mensagens.sucesso')
     <table class="table table-striped table-sm" id="dt_table">
         <thead>
             <tr>
                 <th>Nº</th>
-                <th>Descrição</th>
-                <th>Data/Hora</th>
+                <th>Especialidade</th>
                 <th>Médico</th>
                 <th>Paciente</th>
+                <th>Data/Hora</th>
+                <th>Observação</th>
                 <th class="text-center">Ação</th>
             </tr>
         </thead>
@@ -28,10 +30,11 @@
         @foreach ($dados as $dado)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $dado->descricao }}</td>
-                <td>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $dado->datahora)->format('d/m/Y H:i') }}</td>
+                <td>{{ $dado->medicos->especialidade->nome }}</td>
                 <td>{{ $dado->medicos->nome }}</td>
                 <td>{{ $dado->pacientes->nome }}</td>
+                <td>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $dado->datahora)->format('d/m/Y H:i') }}</td>
+                <td>{{ $dado->descricao }}</td>
                 <td class="text-center">
                     <a href="{{ route('agendamentos.edit',$dado->id) }}" class="btn btn-primary btn-sm">Editar</a>
                     <a href="{{ route('agendamentos.delete',$dado->id) }}" class="btn btn-primary btn-sm">Excluir</a>

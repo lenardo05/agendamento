@@ -32,12 +32,14 @@ class UsuariosController extends Controller
         $request->validate([
             'nome'     => 'required|min:3',
             'email'    => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'profile'  => 'required',
         ]);
         $dados = new User([
             'name'     => $request->get('nome'),
             'email'    => $request->get('email'),
-            'password' => Hash::make($request->get('password'))
+            'password' => Hash::make($request->get('password')),
+            'profile'  => $request->get('profile'),
         ]);
         $dados->save();
 
@@ -64,13 +66,15 @@ class UsuariosController extends Controller
         $request->validate([
             'nome'     => 'required|min:3',
             'email'    => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'profile'  => 'required',
         ]);
 
         $dados = User::find($id);
         $dados->name     = $request->get('nome');
         $dados->email    = $request->get('email');
         $dados->password = ($dados->password == $request->get('password')) ? $dados->password : Hash::make($request->get('password'));
+        $dados->profile  = $request->get('profile');
         $dados->save();
 
         return redirect('/usuarios')->with('success', 'Dados atualizados com sucesso!');

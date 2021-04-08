@@ -29,8 +29,12 @@
                 <td>{{ $dado->name }}</td>
                 <td>{{ $dado->email }}</td>
                 <td class="text-center">
-                    <a href="{{ route('usuarios.edit',$dado->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                    <a href="{{ route('usuarios.delete',$dado->id)}}" class="btn btn-primary btn-sm">Excluir</a>
+                    <a href="{{ route('usuarios.edit', $dado->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                    @if ($dado->profile != 0)
+                    <a href="{{ route('usuarios.delete', $dado->id)}}" class="btn btn-primary btn-sm">Excluir</a>
+                    @else
+                    <a href="#" class="btn btn-secondary btn-sm">Excluir</a>
+                    @endif
                 </td>
             </tr>
         @endforeach

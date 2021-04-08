@@ -58,9 +58,10 @@
                 <label for="celular">Celular</label>
                 <input type="text" id="celular" name="celular" class="form-control celular" maxlength="15" value="{{ $dados->celular }}" required/>
             </div>
-            <div class="form-group col-md-12">
-                <a href='{!! url('/pacientes'); !!}' class="btn btn-secondary mr-2">Voltar</a>
-                <button type="submit" class="btn btn-primary">Atualizar</button>
+
+            <div class="form-group col-md-12 mt-5">
+                <a href='{!! url('/pacientes') !!}' class="btn btn-sm float-left btn-secondary mr-2">Voltar</a>
+                <button type="submit" class="btn btn-sm float-left btn-primary">Atualizar</button>
             </div>
         </div>
     </form>

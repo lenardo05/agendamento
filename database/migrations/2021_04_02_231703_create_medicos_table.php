@@ -14,7 +14,7 @@ class CreateMedicosTable extends Migration
     public function up()
     {
         Schema::create('medicos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('nome', 300);
             $table->integer('idade');
             $table->date('data_nascimento');

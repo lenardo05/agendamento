@@ -24,7 +24,7 @@ class AgendamentosController extends Controller
     public function create()
     {
         //
-        $dados_medicos = Medicos::all();
+        $dados_medicos = Medicos::with('especialidade')->get();
         $dados_pacientes = Pacientes::all();
         return view('agendamento.inserir', compact('dados_medicos','dados_pacientes'));
     }
@@ -35,7 +35,6 @@ class AgendamentosController extends Controller
         $request->validate([
             'id_paciente' => 'required',
             'id_medico'   => 'required',
-            'descricao'   => 'required',
             'datahora'    => 'required',
         ]);
         $dados = new Agendamentos([
@@ -59,7 +58,7 @@ class AgendamentosController extends Controller
     {
         //
         $dados = Agendamentos::find($id);
-        $dados_medicos = Medicos::all();
+        $dados_medicos = Medicos::with('especialidade')->get();
         $dados_pacientes = Pacientes::all();
         return view('agendamento.editar', compact('dados','dados_medicos','dados_pacientes'));
     }
@@ -71,7 +70,6 @@ class AgendamentosController extends Controller
         $request->validate([
             'id_paciente' => 'required',
             'id_medico'   => 'required',
-            'descricao'   => 'required',
             'datahora'    => 'required',
         ]);
 
@@ -86,6 +84,14 @@ class AgendamentosController extends Controller
     }
 
     public function destroy($id)
+    {
+        //
+        $dados = Agendamentos::find($id);
+        $dados->delete();
+        return redirect('/agendamentos')->with('success', 'Dados excluídos com sucesso!');
+    }
+
+    public function confirma($id)
     {
         //
         $dados = Agendamentos::find($id);

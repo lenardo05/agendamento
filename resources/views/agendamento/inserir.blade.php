@@ -24,15 +24,6 @@
         @method('POST')
         @csrf
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="descricao">Descrição</label>
-                <input type="text" id="descricao" name="descricao" class="form-control" required/>
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="datahora">Data/Hora</label>
-                <input type="datetime-local" id="datahora" name="datahora" class="form-control" required/>
-            </div>
 
             <div class="form-group col-md-6">
                 <label for="id_medico">Medico</label>
@@ -40,7 +31,7 @@
                     <option value=''>selecione</option>
                     <option value='' disabled>-----</option>
                     @foreach ($dados_medicos as $dado_medico)
-                        <option value='{{ $dado_medico->id }}'>{{ $dado_medico->nome }}</option>
+                        <option value='{{ $dado_medico->id }}'>{{ $dado_medico->nome }} - {{ $dado_medico->especialidade['nome'] }}</option>
                     @endforeach
                 </select>
             </div>
@@ -56,9 +47,19 @@
                 </select>
             </div>
 
+            <div class="form-group col-md-6">
+                <label for="datahora">Data/Hora</label>
+                <input type="datetime-local" id="datahora" name="datahora" class="form-control" required/>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="descricao">Observação</label>
+                <input type="text" id="descricao" name="descricao" class="form-control" />
+            </div>
+
             <div class="form-group col-md-12">
-                <a href='{!! url('/agendamentos'); !!}' class="btn btn-secondary mr-2">Voltar</a> 
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-sm float-right btn-primary">Cadastrar</button>
+                <a href='{!! url('/agendamentos'); !!}' class="btn btn-sm float-right btn-secondary mr-2">Voltar</a> 
             </div>
         </div>
     </form>

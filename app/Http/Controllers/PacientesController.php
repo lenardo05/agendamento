@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pacientes;
+use App\Models\Agendamentos;
 use Illuminate\Http\Request;
 
 class PacientesController extends Controller
@@ -53,6 +54,9 @@ class PacientesController extends Controller
     public function show($id)
     {
         //
+        $dados = Pacientes::find($id);
+        $dados_agendamentos = Agendamentos::where('id_paciente', '=', $id)->get();
+        return view('paciente.perfil', compact('dados', 'dados_agendamentos'));
     }
 
     public function edit($id)
@@ -91,7 +95,29 @@ class PacientesController extends Controller
     {
         //
         $dados = Pacientes::find($id);
+
+        $consulta = Agendamentos::where('id_paciente', '=', $id)->get()->first();
+
+        if($consulta){
+            return back()->with(
+                [
+                    "mensagem" => "Deseja excluir o(a) paciente {$dados->nome}? A exlusão impactará nos agendamentos!",
+                    "rota" => "pacientes.delete.confirma",
+                    "id" => $dados->id,
+                ]
+            );
+        };
+
         $dados->delete();
         return redirect('/pacientes')->with('success', 'Dados excluídos com sucesso!');
+    }
+
+    public function confirma($id)
+    {
+        //
+        $dados = Pacientes::find($id);
+        $dados->delete();
+        return redirect('/pacientes')->with('success', 'Dados excluídos com sucesso!');
+
     }
 }

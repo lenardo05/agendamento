@@ -12,13 +12,17 @@
 </div>
 
 <div class="table-responsive">
+    @include('medico.excluir')
+    @include('mensagens.sucesso')
     <table class="table table-striped table-sm" id="dt_table">
         <thead>
             <tr>
                 <th>Nº</th>
+                <th>Especialidade</th>
                 <th>Nome</th>
+                <th>CRM</th>
                 <th>Celular</th>
-                <th class="text-center">Ação</th>
+                <th class="text-center w-25">Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -26,11 +30,14 @@
         @foreach ($dados as $dado)
             <tr>
                 <td>{{ ++$i }}</td>
+                <td>{{ $dado->especialidade['nome'] }}</td>
                 <td>{{ $dado->nome }}</td>
+                <td>{{ $dado->registro }}</td>
                 <td>{{ $dado->celular }}</td>
                 <td class="text-center">
                     <a href="{{ route('medicos.edit',$dado->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                    <a href="{{ route('medicos.delete',$dado->id)}}" class="btn btn-primary btn-sm">Excluir</a>
+                    <a href="{{ route('medicos.show',$dado->id)}}" class="btn btn-primary btn-sm">Visualizar</a>
+                    <a href="{{ route('medicos.delete',$dado->id)}}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
         @endforeach
